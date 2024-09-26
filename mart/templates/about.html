@@ -1,0 +1,85 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block title %}About Fast-Mart{% endblock %}
+
+{% block content %}
+<div class="container mx-auto px-4 py-8 bg-gray-50">
+  <h1 class="text-4xl font-bold text-center mb-8 text-gray-800">About Fast-Mart</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div class="bg-white shadow-md rounded-lg p-6 transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-blue-100">
+      <h2 class="text-3xl font-semibold text-blue-900 mb-4">Our Vision</h2>
+      <p class="text-gray-600 mb-6">
+        Our vision is to become a leading e-commerce platform that empowers customers to make informed purchasing decisions while enjoying a smooth and secure shopping experience. We believe that convenience should never compromise quality, and we work hard to ensure our customers receive the best value for their time and money.
+      </p>
+    </div>
+
+    <div class="bg-white shadow-md rounded-lg p-6 transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-blue-100">
+      <h2 class="text-3xl font-semibold text-blue-900 mb-4">Our Values</h2>
+      <ul class="list-disc pl-5 text-gray-600 mb-6 space-y-2">
+        <li><strong>Customer Satisfaction:</strong> We prioritize our customers' needs and continuously strive to exceed their expectations.</li>
+        <li><strong>Integrity:</strong> We conduct our business with transparency and honesty, ensuring that our customers trust and rely on us.</li>
+        <li><strong>Innovation:</strong> We embrace technological advancements and constantly improve our platform to enhance user experience.</li>
+        <li><strong>Sustainability:</strong> We are committed to sustainable practices and reducing our environmental impact.</li>
+      </ul>
+    </div>
+
+    <div class="bg-white shadow-md rounded-lg p-6 transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-blue-100">
+      <h2 class="text-3xl font-semibold text-blue-900 mb-4">Our Products and Services</h2>
+      <p class="text-gray-600 mb-6">At Fast-Mart, we offer a vast selection of products, including:</p>
+      <ul class="list-disc pl-5 text-gray-600 mb-6 space-y-2">
+        <li>Electronics and gadgets</li>
+        <li>Home and kitchen appliances</li>
+        <li>Fashion and accessories</li>
+        <li>Health and beauty products</li>
+        <li>Groceries and household items</li>
+      </ul>
+      <p class="text-gray-600 mb-6">Additionally, we provide fast and reliable delivery services to ensure your purchases reach you promptly.</p>
+    </div>
+
+    <div class="bg-white shadow-md rounded-lg p-6 transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-blue-100">
+      <h2 class="text-3xl font-semibold text-blue-900 mb-4">Why Choose Fast-Mart?</h2>
+      <ul class="list-disc pl-5 text-gray-600 mb-6 space-y-2">
+        <li>Wide variety of quality products</li>
+        <li>Competitive pricing</li>
+        <li>Fast and reliable delivery</li>
+        <li>Secure payment methods</li>
+        <li>Exceptional customer service</li>
+      </ul>
+    </div>
+
+    <div class="bg-white shadow-md rounded-lg p-6 transition-transform transform hover:scale-105 hover:shadow-lg hover:bg-blue-100 col-span-1 md:col-span-2">
+      <h2 class="text-3xl font-semibold text-blue-900 mb-4">Project Developer</h2>
+  
+    <img src="{% static 'raza-profile-kurta.jpg' %}" style="width: 192px; height: 192px;" class="object-cover rounded-lg shadow-md">
+
+
+      
+      <p class="text-gray-600 mb-6">If you have any questions or need assistance, feel free to contact us through the following channels:</p>
+      <ul class="text-gray-600 mb-6 space-y-2">
+        <li>
+          <i class="fab fa-envelope"></i>
+          Email: <a href="mailto:razarais28@gmail.com" class="text-blue-600 hover:underline">razarais28@gmail.com</a>
+        </li>
+        <li>
+          <i class="fab fa-github"></i>
+          GitHub: <a href="https://github.com/ahmedrazarais" class="text-blue-600 hover:underline" target="_blank">github.com/ahmedrazarais</a>
+        </li>
+        <li>
+          <i class="fas fa-phone-alt"></i>
+          Phone: <a href="tel:+923132183548" class="text-blue-600 hover:underline">03132183548</a>
+        </li>
+        <li>
+          <i class="fab fa-linkedin"></i>
+          LinkedIn: <a href="https://www.linkedin.com/in/ahmedrazarais" class="text-blue-600 hover:underline" target="_blank">www.linkedin.com/in/ahmedrazarais</a>
+        </li>
+        <li>
+          <i class="fa-solid fa-user-tie"></i>
+          Portfolio: <a href="https://razaraisportfolio.vercel.app" class="text-blue-600 hover:underline" target="_blank">razaraisportfolio.vercel.app</a>
+        </li>
+      </ul>
+      <p class="text-gray-600 mb-6">We look forward to serving you and making your shopping experience with Fast-Mart the best it can be!</p>
+    </div>
+    
+{% endblock %}
