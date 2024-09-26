@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}Fast-Mart Checkout{% endblock %}
+
+{% block content %}
+<div class="container mx-auto p-8">
+    <!-- Big Title for Checkout -->
+    <div class="bg-gray-800 text-white py-4 px-6 mb-6 text-center">
+        <h1 class="text-4xl font-bold">Checkout</h1>
+    </div>
+
+    <!-- Select Payment Method -->
+    <h2 class="text-3xl font-semibold text-center mb-6">Select Payment Method</h2>
+
+    <div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+        <!-- Easypaisa Option -->
+        <div class="text-center border p-4 rounded-lg" style="background-color: #90EE90; transition: background-color 0.3s;">
+            <a href="{% url "checkout_other" %}" class="block">
+                <i class="fab fa-amazon-pay text-green-500 text-5xl"></i> <!-- Easypaisa Icon Substitute -->
+                <p class="mt-2 text-lg font-medium">Easypaisa</p>
+            </a>
+        </div>
+
+        <!-- JazzCash Option -->
+        <div class="text-center border p-4 rounded-lg" style="background-color: #FFCCCB; transition: background-color 0.3s;">
+            <a href="{% url "checkout_other" %}" class="block">
+                <i class="fab fa-jedi-order text-red-500 text-5xl"></i> <!-- JazzCash Icon Substitute -->
+                <p class="mt-2 text-lg font-medium">JazzCash</p>
+            </a>
+        </div>
+
+        <!-- Cash on Delivery Option -->
+        <div class="text-center border p-4 rounded-lg" style="background-color: #e6f7ff; transition: background-color 0.3s;">
+            <a href="{% url "checkout_success" %}" class="block">
+                <i class="fas fa-hand-holding-usd text-blue-500 text-5xl"></i> <!-- Cash on Delivery Icon -->
+                <p class="mt-2 text-lg font-medium">Cash on Delivery</p>
+            </a>
+        </div>
+
+        <!-- Bank Transfer Option -->
+        <div class="text-center border p-4 rounded-lg" style="background-color: #f3e6ff; transition: background-color 0.3s;">
+            <a href="{% url "checkout_other" %}" class="block">
+                <i class="fas fa-university text-purple-500 text-5xl"></i> <!-- Bank Transfer Icon -->
+                <p class="mt-2 text-lg font-medium">Bank Transfer</p>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
