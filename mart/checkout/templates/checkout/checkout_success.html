@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}Order Placed Successfully{% endblock %}
+
+{% block content %}
+  <div class="flex flex-col items-center justify-center h-screen bg-gray-100">
+    <div class="bg-white p-8 rounded-lg shadow-lg text-center">
+      <h1 class="text-2xl font-bold text-green-600">Thank you for choosing Fast Mart!</h1>
+      <p class="text-lg mt-4 text-gray-700">Your order has been placed successfully.</p>
+      <p class="text-lg mt-2 text-gray-700">We will send you an email with the details shortly.</p>
+      <div class="mt-6">
+        <a href="{% url "home" %}" class="text-blue-500 hover:underline">Return to Homepage</a>
+      </div>
+    </div>
+  </div>
+{% endblock %}
