@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block title %}Signup Form{% endblock %}
+
+{% block content %}
+<div class="relative min-h-screen bg-gray-100 flex items-center justify-center">
+    <div class="max-w-lg mx-auto bg-gray-400 p-8 rounded-lg shadow-lg border border-gray-200">
+        <h2 class="text-3xl font-bold mb-6 text-center text-gray-800">Fast-Mart Registration</h2>
+        
+        <!-- Display non-field errors at the top -->
+        {% if registration_form.non_field_errors %}
+            <div class="text-red-600 mb-4">
+                {% for error in registration_form.non_field_errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+
+
+        
+
+
+
+
+        <!-- Message to display code sent status -->
+        <div id="statusMessage" class="mb-4"></div>
+
+        <form id="registerForm" action="{% url 'signup_form' %}" method="post">
+            {% csrf_token %}
+            <!-- Grid layout for form fields with improved spacing and alignment -->
+            <div class="grid grid-cols-2 gap-x-6 gap-y-6">
+                {% for field in registration_form %}
+                    <div class="col-span-2 sm:col-span-1">
+                        <label class="block text-sm font-medium text-gray-700 mb-2" for="{{ field.id_for_label }}">
+                            {{ field.label_tag }}
+                        </label>
+                        {{ field }}
+                        {% if field.errors %}
+                            <p class="text-red-600 text-sm mt-1">{{ field.errors }}</p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+
+            <!-- Buttons for sending verification code and submitting the form -->
+            <div class="mt-4 flex justify-between">
+                <button type="button" id="sendCodeButton" class="bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-black transition duration-300">
+                    Send Verification Code
+                </button>
+                <button type="submit" class="bg-gray-800 text-white px-6 py-3 rounded-lg shadow-lg hover:bg-black transition duration-300">
+                    Register
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#sendCodeButton').click(function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            
+            // Get the email from the form
+            var email = $('#id_email').val();
+
+            // Clear previous messages
+            $('#statusMessage').empty(); // Clear any previous status messages
+
+            if (!email) {
+                $('#statusMessage').html('<div class="text-red-600 mb-4"><p>Please enter your email address.</p></div>');
+                return;
+            }
+
+            // Submit the form via AJAX to send the verification code
+            $.ajax({
+                type: 'POST',
+                url: $('#registerForm').attr('action'),
+                data: $('#registerForm').serialize() + '&send_code=true',
+                success: function(response) {
+                    // Update the status message with the response from the server
+                    $('#statusMessage').html('<div class="text-green-600 mb-4"><p>' + response.message + '</p></div>');
+                },
+                error: function(xhr, errmsg, err) {
+                    $('#statusMessage').html('<div class="text-red-600 mb-4"><p>An error occurred while sending the verification code. Please try again.</p></div>');
+                }
+            });
+        });
+    });
+</script>
+
+       
+{% endblock %}
