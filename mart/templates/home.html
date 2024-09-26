@@ -1,0 +1,49 @@
+{% extends 'layout.html' %}
+
+
+
+{% block title %}
+Home - Fast-Mart
+{% endblock %}
+
+
+
+{% block content %}
+{% if messages %}
+    <div id="message-box" class="fixed top-0 inset-x-0 px-4 py-3 bg-gray-400 text-white shadow-md z-50 text-center">
+        {% for message in messages %}
+            <div class="text-gray-300 font-semibold">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+<div class="container mx-auto px-4 py-8 flex-grow">
+    <h1 class="text-3xl font-bold mb-6 text-center">Welcome to Fast-Mart</h1>
+    <p class="mb-6 text-center">Your one-stop shop for everything you need.</p>
+
+
+    <!-- Grid for categories -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {% for item in all_cataegories %}
+            <a href="{% url 'category_products' item.id %}" class="block bg-white rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105">
+                <img src="{{ item.image.url }}" alt="{{ item.name }}" class="w-full h-48 object-cover">
+                <div class="p-4">
+                    <h2 class="text-xl font-semibold text-gray-800 hover:text-blue-500 text-center">{{ item.name }}</h2>
+                </div>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    // Hide the message box after 3 seconds (3000 milliseconds)
+    setTimeout(function() {
+        var messageBox = document.getElementById('message-box');
+        if (messageBox) {
+            messageBox.style.display = 'none';
+        }
+    }, 3000); // 3 seconds
+</script>
+
+{% endblock %}
