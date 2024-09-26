@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block title %}Login HomePage{% endblock %}
+
+{% block content %}
+
+<div class="container mx-auto px-4 py-6">
+    <h1 class="text-4xl font-bold text-gray-800 mb-4">Login Information</h1>
+    <p class="text-lg text-gray-600 mb-4">Please make sure to provide the following information to Login To Your Account:</p>
+    <ul class="list-disc list-inside space-y-2 mb-6">
+        <li class="text-gray-700">
+            <strong class="font-semibold">Username:</strong> Enter a username that you will use During Registration.
+        </li>
+        <li class="text-gray-700">
+            <strong class="font-semibold">Email:</strong> Enter a valid email address for account verification and password recovery.
+        </li>
+        <li class="text-gray-700">
+            <strong class="font-semibold">Password:</strong> Enter The password You Set During Registration.
+        </li>
+        <li class="text-gray-700">
+            <strong class="font-semibold">Forgot Password:</strong> Answer a security question and provide an answer. This will help you recover your password if you forget it.
+        </li>
+    </ul>
+    <a href="{% url "signin_form" %}" class="inline-block px-6 py-3 bg-gray-800 text-white font-semibold rounded-lg shadow-md hover:bg-gray-500 transition duration-300">
+        Start Login
+    </a>
+</div>
+{% endblock %}
