@@ -1,0 +1,96 @@
+{% extends 'layout.html' %}
+
+{% load static %}
+
+
+{% block content %}
+{% if messages %}
+    <div id="message-box" class="fixed top-0 inset-x-0 px-4 py-3 bg-gray-400 text-white shadow-md z-50 text-center">
+        {% for message in messages %}
+            <div class="text-gray-300 font-semibold">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+{% endif %}
+<div class="container mx-auto px-4 py-8">
+    <div class="bg-gray-800 text-white py-4 px-6 mb-6 text-center">
+        <h1 class="text-4xl font-bold">Shopping Cart</h1>
+        <br>
+        <p class="text-xl">Fast-Mart Cart</p>
+    </div>
+    {% if cart_items %}
+        <div class="overflow-x-auto">
+            <table class="w-full bg-white border border-gray-200">
+                <thead>
+                    <tr class="bg-gray-100">
+                        <th class="py-4 px-6 text-left">Product Image</th>
+                        <th class="py-4 px-6 text-left">Product Name</th>
+                        <th class="py-4 px-6 text-left">Quantity</th>
+                        <th class="py-4 px-6 text-left">Unit Price</th>
+                        <th class="py-4 px-6 text-left">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in cart_items %}
+                        {% if item.product_quantity > 0 %}
+                        <tr class="border-b-2 border-gray-300">
+                            <!-- Product Image -->
+                            <td class="py-4 px-6 text-left align-top pl-12"> <!-- Added pl-12 for padding-left -->
+                                <img src="{{ item.product.image.url }}" alt="{{ item.product_name }}" style="width: 80px; height: 80px;" class="object-cover rounded-lg">
+                            </td>
+                            <!-- Product Name -->
+                            <td class="py-4 px-6 text-left align-top pl-12"> <!-- Added pl-12 for padding-left -->
+                                {{ item.product_name }}
+                            </td>
+                            <!-- Quantity -->
+                            <td class="py-4 px-6 text-left align-top pl-12"> <!-- Added pl-12 for padding-left -->
+                                <div class="flex items-center justify-between border rounded-lg p-1 w-24">
+                                    <a href="{% url 'decrease_quantity' item.product_id %}" class="bg-gray-800 hover:bg-black text-white px-2 py-1 rounded-lg">-</a>
+                                    <span class="mx-2">{{ item.product_quantity }}</span>
+                                    <a href="{% url 'increase_quantity' item.product_id %}" class="bg-gray-800 hover:bg-black text-white px-2 py-1 rounded-lg">+</a>
+                                </div>
+                            </td>
+                            <!-- Unit Price -->
+                            <td class="py-4 px-6 text-left align-top pl-12"> <!-- Added pl-12 for padding-left -->
+                                ${{ item.price_per_unit }}
+                            </td>
+                            <!-- Subtotal -->
+                            <td class="py-4 px-6 text-left align-top pl-12"> <!-- Added pl-12 for padding-left -->
+                                ${{ item.total_price }}
+                            </td>
+                        </tr>
+                        {% endif %}
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Total Amount -->
+        <div class="flex justify-end mt-4 text-right font-bold text-lg">
+            <p>Total = ${{ total_cart_value }}</p>
+        </div>
+
+        <div class="flex justify-end mt-4 space-x-4">
+            <a href="{% url "clear_cart" %}" class="bg-gray-800 hover:bg-black text-white px-4 py-2 rounded-lg">Clear Cart</a>
+            <a href="{% url "checkout_home" %}" class="bg-gray-800 hover:bg-black text-white px-4 py-2 rounded-lg">Proceed to Checkout</a>
+        </div>
+
+    {% else %}
+        
+
+        <div class="flex items-center justify-center h-96">
+            <img src="{% static 'empty cart.png' %}" alt="Empty Cart" class="object-cover">
+        </div>
+    {% endif %}
+</div>
+<script>
+    // Hide the message box after 3 seconds (3000 milliseconds)
+    setTimeout(function() {
+        var messageBox = document.getElementById('message-box');
+        if (messageBox) {
+            messageBox.style.display = 'none';
+        }
+    }, 3000); // 3 seconds
+</script>
+{% endblock %}
